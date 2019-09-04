@@ -1,0 +1,20 @@
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Book from "./book";
+
+class allocationBooks extends Component {
+
+  render() {
+    return  (
+      <div className="bookshelf">
+        <h2 className="bookshelf-title">{this.props.title}</h2>
+          <ol className="books-grid">
+            <Book books={this.props.books}/>
+          </ol>
+      </div>
+    );
+
+  }
+}
+
+export default allocationBooks;
