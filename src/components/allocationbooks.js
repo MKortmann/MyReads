@@ -9,12 +9,19 @@ class allocationBooks extends Component {
       <div className="bookshelf">
         <h2 className="bookshelf-title">{this.props.title}</h2>
           <ol className="books-grid">
-            <Book books={this.props.books}/>
+            <Book books={this.props.books}
+             move={this.props.move}
+            />
           </ol>
       </div>
     );
 
   }
+}
+
+allocationBooks.propTypes = {
+  books: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired
 }
 
 export default allocationBooks;

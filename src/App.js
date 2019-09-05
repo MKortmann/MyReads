@@ -29,7 +29,14 @@ class BooksApp extends React.Component {
     BooksAPI.getAll()
       .then( (response) =>  {
         this.setState({ books: response })
-        // console.log(response)
+        this.reorganizeBooks()
+      })
+  }
+
+  componentDidUpdate() {
+    BooksAPI.getAll()
+      .then( (response) =>  {
+        this.setState({ books: response })
         this.reorganizeBooks()
       })
   }
@@ -39,7 +46,7 @@ class BooksApp extends React.Component {
     let wr = [];
     let r = [];
 
-    this.state.books.map((book) => {
+    this.state.books.forEach((book) => {
       switch (book.shelf) {
         case "currentlyReading":
         cr.push(book);
@@ -50,6 +57,8 @@ class BooksApp extends React.Component {
         case "read":
         r.push(book);
         break
+        default:
+        return false;
       }
     })
 
@@ -63,6 +72,16 @@ class BooksApp extends React.Component {
 
   }
 
+  move = (book, e) => {
+    console.log(e.target.value);
+    console.log(book);
+
+    BooksAPI.update(book, e.target.value)
+      .then( (response) =>  {
+        console.log(response);
+      })
+  }
+
 
 
   render() {
@@ -73,9 +92,21 @@ class BooksApp extends React.Component {
         ) : (
           <div className="list-books">
             <Header />
-            <AllocationBooks books={this.state.currentlyReading} title={"Currently Reading"}/>
-            <AllocationBooks books={this.state.wantToRead} title={"Want To Read"}/>
-            <AllocationBooks books={this.state.read} title={"Read"}/>
+            <AllocationBooks
+              books={this.state.currentlyReading}
+              title={"Currently Reading"}
+              move={this.move}
+            />
+            <AllocationBooks
+              books={this.state.wantToRead}
+              title={"Want To Read"}
+              move={this.move}
+            />
+            <AllocationBooks
+              books={this.state.read}
+              title={"Read"}
+              move={this.move}
+            />
             <div className="open-search">
               <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
             </div>
