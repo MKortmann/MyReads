@@ -8,7 +8,7 @@ class SearchPage extends Component {
     return(
       <div className="search-books">
         <div className="search-books-bar">
-          <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
+          <button className="close-search" style={{cursor: "pointer"}} onClick={() => this.props.closeSearchPage()}>Close</button>
           <div className="search-books-input-wrapper">
             {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -18,7 +18,7 @@ class SearchPage extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" placeholder="Search by title or author"/>
+            <input type="text" onChange={this.props.search.bind(this)} placeholder="Search by title or author"/>
 
           </div>
         </div>

@@ -82,13 +82,21 @@ class BooksApp extends React.Component {
       })
   }
 
+  search = (e) => {
+    console.log(e.target.value);
+  }
+
+  closeSearchPage = () => {
+    this.setState({ showSearchPage: false })
+  }
+
 
 
   render() {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchPage />
+          <SearchPage search={this.search} closeSearchPage={this.closeSearchPage}  />
         ) : (
           <div className="list-books">
             <Header />
