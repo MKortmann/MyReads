@@ -20,23 +20,50 @@ class BooksApp extends React.Component {
     currentlyReading: [],
     wantToRead: [],
     read: [],
+    searchedBooks: [],
     showSearchPage: false
   }
 
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log("[App.js] - getDerivedStateFromProps");
+  //   return state;
+  // }
+  //
+  //
+  // // getSnapshotBeforeUpdate(prevProps, prevState) {
+  // //
+  // //   console.log("[App.js getSnapshotBeforeUpdate]");
+  // //
+  // //   return prevState;
+  // // }
+  //
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("[App.js shouldComponnetUpdate]");
+  //   debugger
+  //   if(this.state.books.length !== 0) {
+  //     this.state.books.forEach((book, index) => {
+  //       if( book.shelf !== nextState.books[index].shelf) {
+  //         return true
+  //       }
+  //     })
+  //   } else {
+  //     return true
+  //   }
+  //   return false
+  // }
+
+
+  // componentDidUpdate() {
+  //   console.log("[App.js componentDidUpdate]");
+  //   this.componentDidMount()
+  // }
 
   // As soon as the component mount let's get all the books
   componentDidMount() {
     BooksAPI.getAll()
       .then( (response) =>  {
         this.setState({ books: response })
-        this.reorganizeBooks()
-      })
-  }
-
-  componentDidUpdate() {
-    BooksAPI.getAll()
-      .then( (response) =>  {
-        this.setState({ books: response })
+        // console.log(this.state.books);
         this.reorganizeBooks()
       })
   }
@@ -46,7 +73,9 @@ class BooksApp extends React.Component {
     let wr = [];
     let r = [];
 
-    this.state.books.forEach((book) => {
+    let localbooks = [...this.state.books];
+
+    localbooks.forEach((book) => {
       switch (book.shelf) {
         case "currentlyReading":
         cr.push(book);
@@ -62,14 +91,7 @@ class BooksApp extends React.Component {
       }
     })
 
-    this.setState({currentlyReading: cr});
-    this.setState({wantToRead: wr});
-    this.setState({read: r});
-
-    console.log(this.state.currentlyReading);
-    console.log(this.state.wantToRead);
-    console.log(this.state.read);
-
+    this.setState({currentlyReading: cr, wantToRead: wr,  read: r});
   }
 
   move = (book, e) => {
@@ -77,13 +99,18 @@ class BooksApp extends React.Component {
     console.log(book);
 
     BooksAPI.update(book, e.target.value)
-      .then( (response) =>  {
+      .then( (response) => {
+        this.componentDidMount();
         console.log(response);
       })
   }
 
   search = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
+    BooksAPI.search(e.target.value)
+      .then( (response) =>  {
+        this.setState({ searchedBooks: response })
+      })
   }
 
   closeSearchPage = () => {
@@ -93,10 +120,14 @@ class BooksApp extends React.Component {
 
 
   render() {
+    console.log("[App.js rendering]");
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchPage search={this.search} closeSearchPage={this.closeSearchPage}  />
+          <React.Fragment>
+            <Header />
+            <SearchPage search={this.search} closeSearchPage={this.closeSearchPage}  />
+          </React.Fragment>
         ) : (
           <div className="list-books">
             <Header />

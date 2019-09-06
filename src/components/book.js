@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Authors from "./authors"
+import Authors from "./authors";
+const uuidv4 = require('uuid/v4');
 
 class Book extends Component {
 
@@ -24,7 +25,7 @@ class Book extends Component {
               </div>
             </div>
             <div className="book-title" style={{color: "#007bff"}}>{book.title}</div>
-            <Authors authors={book.authors}/>
+            <Authors key={uuidv4()} authors={book.authors}/>
           </div>
         </li>
       ));
