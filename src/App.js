@@ -65,6 +65,7 @@ class BooksApp extends React.Component {
         this.setState({ books: response })
         // console.log(this.state.books);
         this.reorganizeBooks()
+        console.log(response)
       })
   }
 
@@ -101,23 +102,27 @@ class BooksApp extends React.Component {
     BooksAPI.update(book, e.target.value)
       .then( (response) => {
         this.componentDidMount();
-        console.log(response);
       })
   }
 
   search = (e) => {
     // console.log(e.target.value);
-    BooksAPI.search(e.target.value)
-      .then( (response) =>  {
-        this.setState({ searchedBooks: response })
-      })
+    if(e.target.value !== "") {
+      BooksAPI.search(e.target.value)
+        .then( (response) =>  {
+          this.setState({ searchedBooks: response })
+          console.log(response);
+        })
+    } else {
+      const array = [];
+      this.setState({searchedBooks: array})
+    }
+
   }
 
   closeSearchPage = () => {
     this.setState({ showSearchPage: false })
   }
-
-
 
   render() {
     console.log("[App.js rendering]");
@@ -127,6 +132,16 @@ class BooksApp extends React.Component {
           <React.Fragment>
             <Header />
             <SearchPage search={this.search} closeSearchPage={this.closeSearchPage}  />
+            {this.state.searchedBooks.length > 0 ? (
+              <AllocationBooks
+                books={this.state.searchedBooks}
+                title={"Searched Books"}
+                move={this.move}
+              />
+            ):(
+                <h2>No Book Founded</h2>
+            )}
+
           </React.Fragment>
         ) : (
           <div className="list-books">

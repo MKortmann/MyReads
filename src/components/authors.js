@@ -2,14 +2,18 @@ import React from "react";
 
 function Authors(props) {
 
-  return props.authors.map((author) => (
-    <div style={style}>
-       {author}
-    </div>
-  ))
-
-
-
+  if(props.authors !== undefined) {
+    return props.authors.map((author) => (
+      <div style={style}>
+         {author}
+      </div>
+    ))
+  } else {
+    return (
+      <div></div>
+    )
+  }
+  
 }
 
 const style = {

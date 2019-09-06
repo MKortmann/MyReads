@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Authors from "./authors";
+import Cover from "./cover";
 const uuidv4 = require('uuid/v4');
 
 class Book extends Component {
@@ -11,9 +12,7 @@ class Book extends Component {
         <li key={book.id}>
           <div className="book">
             <div className="book-top">
-              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:  "url(" + book.imageLinks.thumbnail + ")"}}>
-              <p style={{textAlign: "center", width: 128, marginTop: -20, color: "white", backgroundColor:  "#007bff"}}>{book.shelf}</p>
-              </div>
+              <Cover book={book}/>              
               <div className="book-shelf-changer">
                 <select onChange={this.props.move.bind(this, book)} value={book.shelf}>
                   <option value="move" disabled>Move to...</option>
