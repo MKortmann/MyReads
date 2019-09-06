@@ -11,6 +11,7 @@ class allocationBooks extends Component {
           <ol className="books-grid">
             <Book books={this.props.books}
              move={this.props.move}
+             storedBooks={this.props.storedBooks}        
             />
           </ol>
       </div>

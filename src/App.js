@@ -135,6 +135,7 @@ class BooksApp extends React.Component {
             {this.state.searchedBooks.length > 0 ? (
               <AllocationBooks
                 books={this.state.searchedBooks}
+                storedBooks={this.state.books}
                 title={"Searched Books"}
                 move={this.move}
               />
@@ -148,16 +149,19 @@ class BooksApp extends React.Component {
             <Header />
             <AllocationBooks
               books={this.state.currentlyReading}
+              storedBooks={this.state.books}
               title={"Currently Reading"}
               move={this.move}
             />
             <AllocationBooks
               books={this.state.wantToRead}
+              storedBooks={this.state.books}
               title={"Want To Read"}
               move={this.move}
             />
             <AllocationBooks
               books={this.state.read}
+              storedBooks={this.state.books}
               title={"Read"}
               move={this.move}
             />

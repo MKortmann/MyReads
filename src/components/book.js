@@ -12,7 +12,7 @@ class Book extends Component {
         <li key={book.id}>
           <div className="book">
             <div className="book-top">
-              <Cover book={book}/>              
+              <Cover book={book} storedBooks={this.props.storedBooks} />              
               <div className="book-shelf-changer">
                 <select onChange={this.props.move.bind(this, book)} value={book.shelf}>
                   <option value="move" disabled>Move to...</option>
