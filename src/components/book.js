@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Authors from "./authors";
 import Cover from "./cover";
-const uuidv4 = require('uuid/v4');
 
 class Book extends Component {
 
@@ -12,7 +11,7 @@ class Book extends Component {
         <li key={book.id}>
           <div className="book">
             <div className="book-top">
-              <Cover book={book} storedBooks={this.props.storedBooks} />              
+              <Cover book={book} storedBooks={this.props.storedBooks} />
               <div className="book-shelf-changer">
                 <select onChange={this.props.move.bind(this, book)} value={book.shelf}>
                   <option value="move" disabled>Move to...</option>
@@ -24,7 +23,7 @@ class Book extends Component {
               </div>
             </div>
             <div className="book-title" style={{color: "#007bff"}}>{book.title}</div>
-            <Authors key={uuidv4()} authors={book.authors}/>
+            <Authors authors={book.authors}/>
           </div>
         </li>
       ));
