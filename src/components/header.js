@@ -10,7 +10,7 @@ function Header() {
 
 const headerStyle = {
   textAlign: "center",
-  background: " #007bff",
+  background: " #17a2b8",
   color: "white",
   padding: "10px",
   margin: "0"

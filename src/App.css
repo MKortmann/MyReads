@@ -12,19 +12,26 @@ body, .app {
   line-height: 1.4;
 }
 
+h1 {
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 10px;
+}
+
 /* main page */
 
-.list-books-title {
+/* .list-books-title {
   padding: 10px 0;
   background: #007bff;
   text-align: center;
-}
-
-.list-books-title h1 {
-  font-weight: 400;
-  margin: 0;
-  color: white;
-}
+} */
 
 .list-books-content {
   padding: 0 0 80px;
@@ -32,13 +39,7 @@ body, .app {
 }
 
 .bookshelf {
-  padding: 0 10px 20px;
-}
-
-@media (min-width: 600px) {
-  .bookshelf {
-    padding: 0 20px 40px;
-  }
+  padding: 0;
 }
 
 .bookshelf-title {
@@ -114,6 +115,7 @@ body, .app {
   font-size: 0;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 button:active {
@@ -129,7 +131,7 @@ button:active {
 
 .books-grid {
   list-style-type: none;
-  padding: 0;
+  padding: 20px 0 0 0;
   margin: 0;
   display: flex;
   justify-content: center;

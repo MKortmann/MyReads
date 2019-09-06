@@ -3,8 +3,8 @@ import IdCheck from "./idcheck";
 
 function Cover (props) {
 
-  console.log(props.book.id);
-  console.log(props.storedBooks);
+  // console.log(props.book.id);
+  // console.log(props.storedBooks);
 
   if(props.book.imageLinks !== undefined) {
     return (

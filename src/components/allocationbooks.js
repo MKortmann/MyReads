@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Book from "./book";
+import SubHeader from "./subheader";
 
 class allocationBooks extends Component {
 
   render() {
     return  (
       <div className="bookshelf">
-        <h2 className="bookshelf-title">{this.props.title}</h2>
+        <SubHeader title={this.props.title}/>
           <ol className="books-grid">
             <Book books={this.props.books}
              move={this.props.move}
-             storedBooks={this.props.storedBooks}        
+             storedBooks={this.props.storedBooks}
             />
           </ol>
       </div>

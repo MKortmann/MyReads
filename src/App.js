@@ -24,40 +24,6 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
-  // static getDerivedStateFromProps(props, state) {
-  //   console.log("[App.js] - getDerivedStateFromProps");
-  //   return state;
-  // }
-  //
-  //
-  // // getSnapshotBeforeUpdate(prevProps, prevState) {
-  // //
-  // //   console.log("[App.js getSnapshotBeforeUpdate]");
-  // //
-  // //   return prevState;
-  // // }
-  //
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log("[App.js shouldComponnetUpdate]");
-  //   debugger
-  //   if(this.state.books.length !== 0) {
-  //     this.state.books.forEach((book, index) => {
-  //       if( book.shelf !== nextState.books[index].shelf) {
-  //         return true
-  //       }
-  //     })
-  //   } else {
-  //     return true
-  //   }
-  //   return false
-  // }
-
-
-  // componentDidUpdate() {
-  //   console.log("[App.js componentDidUpdate]");
-  //   this.componentDidMount()
-  // }
-
   // As soon as the component mount let's get all the books
   componentDidMount() {
     BooksAPI.getAll()
@@ -96,9 +62,6 @@ class BooksApp extends React.Component {
   }
 
   move = (book, e) => {
-    console.log(e.target.value);
-    console.log(book);
-
     BooksAPI.update(book, e.target.value)
       .then( (response) => {
         this.componentDidMount();
@@ -106,12 +69,10 @@ class BooksApp extends React.Component {
   }
 
   search = (e) => {
-    // console.log(e.target.value);
     if(e.target.value !== "") {
       BooksAPI.search(e.target.value)
         .then( (response) =>  {
           this.setState({ searchedBooks: response })
-          console.log(response);
         })
     } else {
       const array = [];
@@ -125,7 +86,6 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    console.log("[App.js rendering]");
     return (
       <div className="app">
         {this.state.showSearchPage ? (
