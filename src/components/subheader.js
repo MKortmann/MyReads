@@ -7,18 +7,19 @@ function subHeader (props) {
   let style = {
     textAlign: "center",
     color: "white",
-    backgroundColor: "#dc3545"
+    backgroundColor: "#dc3545",
+    opacity: "0.7"
   }
 
   switch(props.title) {
     case "Currently Reading":
-      style = {textAlign: "center",color: "white", backgroundColor: "#007bff"}
+      style = {textAlign: "center",color: "white", backgroundColor: "#007bff", opacity: "0.8"}
       break;
     case "Want To Read":
-      style = {textAlign: "center",color: "white", backgroundColor: "#dc3545"}
+      style = {textAlign: "center",color: "white", backgroundColor: "#dc3545", opacity: "0.7"}
       break;
     case "Read":
-      style = {textAlign: "center",color: "white", backgroundColor: "#6c757d"}
+      style = {textAlign: "center",color: "white", backgroundColor: "#6c757d", opacity: "0.7"}
       break;
     default:
     return false;

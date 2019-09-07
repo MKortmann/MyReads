@@ -50,12 +50,6 @@ nav a:hover {
 
 /* main page */
 
-/* .list-books-title {
-  padding: 10px 0;
-  background: #007bff;
-  text-align: center;
-} */
-
 .list-books-content {
   padding: 0 0 80px;
   flex: 1;
@@ -85,6 +79,7 @@ nav a:hover {
   height: 50px;
   border-radius: 50%;
   background: #007bff;
+  opacity: 0.8;
   background-image: url('./icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
