@@ -88,7 +88,7 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 
 The app was created used npx create-react-app! I started from scratch. However, I am using
 the Udacity BookAPI to fetch and update the books. The API is limited to a number of
-76 terms.
+78 terms.
 
 ### More Information
 

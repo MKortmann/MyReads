@@ -11,46 +11,43 @@ class Book extends Component {
     const storedBook = [...this.props.storedBooks];
 
     storedBook.forEach((stored) => {
-        if(stored.id === book.id) {
-          selectValue = stored.shelf;
-          return selectValue;
-        }
+      if(stored.id === book.id) {
+        selectValue = stored.shelf;
+        return selectValue;
+      }
     })
-
     return selectValue;
   }
 
-
-
-
   render() {
 
-      return this.props.books.map((book) => (
-        <li key={book.id}>
-          <div className="book">
-            <div className="book-top">
-              <Cover book={book} storedBooks={this.props.storedBooks} />
-              <div className="book-shelf-changer">
-                <select onChange={this.props.move.bind(this, book)} value={book.shelf ? book.shelf : this.checkBookShelf(book)}>
-                  <option value="move" disabled>Move to...</option>
-                  <option value="currentlyReading">Currently Reading</option>
-                  <option value="wantToRead">Want to Read</option>
-                  <option value="read">Read</option>
-                  <option value="none">None</option>
-                </select>
-              </div>
+    return this.props.books.map((book) => (
+      <li key={book.id}>
+        <div className="book">
+          <div className="book-top">
+            <Cover book={book} storedBooks={this.props.storedBooks} />
+            <div className="book-shelf-changer">
+              <select onChange={this.props.move.bind(this, book)} value={book.shelf ? book.shelf : this.checkBookShelf(book)}>
+                <option value="move" disabled>Move to...</option>
+                <option value="currentlyReading">Currently Reading</option>
+                <option value="wantToRead">Want to Read</option>
+                <option value="read">Read</option>
+                <option value="none">None</option>
+              </select>
             </div>
-            <div className="book-title" style={{color: "#007bff"}}>{book.title}</div>
-            <Authors authors={book.authors}/>
           </div>
-        </li>
-      ));
+          <div className="book-title" style={{color: "#007bff"}}>{book.title}</div>
+          <Authors authors={book.authors}/>
+        </div>
+      </li>
+    ));
   }
 }
 
 Book.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  storedBooks: PropTypes.array.isRequired,
+  move: PropTypes.func.isRequired
 }
-
 
 export default Book;

@@ -1,9 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
+// It is the subHeader such as: Currently Reading, Want To Read and Read.
 function subHeader (props) {
 
+  // standard sets
   let title = props.title;
-
   let style = {
     textAlign: "center",
     color: "white",
@@ -11,6 +13,7 @@ function subHeader (props) {
     opacity: "0.7"
   }
 
+  // Change the sets in accord to the title.
   switch(props.title) {
     case "Currently Reading":
       style = {textAlign: "center",color: "white", backgroundColor: "#007bff", opacity: "0.8"}
@@ -30,8 +33,10 @@ function subHeader (props) {
       <h2 className="bookshelf-title" style={style}>{title}</h2>
     </React.Fragment>
   )
-
 }
 
+subHeader.propTypes = {
+  title: PropTypes.string.isRequired
+}
 
 export default subHeader;

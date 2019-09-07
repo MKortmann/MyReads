@@ -1,18 +1,15 @@
 import React from "react";
 import IdCheck from "./idcheck";
+import PropTypes from "prop-types";
 
-function Cover (props) {
-
-  // console.log(props.book.id);
-  // console.log(props.storedBooks);
-
+function cover (props) {
+  // some books do not have image! So, let's check it!
   if(props.book.imageLinks !== undefined) {
     return (
-       <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:  "url(" + props.book.imageLinks.thumbnail + ")"}}>
-       <IdCheck book={props.book} storedBooks={props.storedBooks} />
-       </div>
+     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:  "url(" + props.book.imageLinks.thumbnail + ")"}}>
+     <IdCheck book={props.book} storedBooks={props.storedBooks} />
+     </div>
     )
-
   } else {
     return (
       <div className="book-cover" style={{ width: 128, height: 193, background:  "white"}}>
@@ -20,8 +17,10 @@ function Cover (props) {
       </div>
     )
   }
-
 }
 
+cover.propTypes = {
+  storedBooks: PropTypes.array.isRequired
+}
 
-export default Cover;
+export default cover;

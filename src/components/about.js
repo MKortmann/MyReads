@@ -15,17 +15,19 @@ function about (props) {
     'Virtual Reality', 'Web Development', 'iOS'];
 
   return (
-      <div style={{ textAlign: "center"}}>
-        <h2>About</h2>
-        <div>
+    <div style={{ textAlign: "center", fontSize: "25px"}}>
+      <h2>About</h2>
+      <div>
         <p>The Allowed Search Terms are:</p>
+        <div style={{margin: "47px"}}>
           {
-          searchWords.map((word, index) => {
-            return <span key={index} style={{listStyle:"none"}}>{index}- {word} </span>
-          })
+            searchWords.map((word, index) => {
+              return <span key={index} style={{listStyle:"none"}}>{index}- {word} </span>
+            })
           }
         </div>
       </div>
+    </div>
   )
 }
 

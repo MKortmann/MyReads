@@ -1,8 +1,11 @@
 import React from "react";
+// API to generate id's
+import PropTypes from "prop-types";
 const uuidv4 = require('uuid/v4');
 
-function Authors(props) {
-
+// this stateless component basically return the authors.
+// Used to make a better style!
+function authors(props) {
   if(props.authors !== undefined) {
     return props.authors.map((author) => (
       <div key={uuidv4()} style={style}>
@@ -14,7 +17,6 @@ function Authors(props) {
       <div key={uuidv4()}></div>
     )
   }
-
 }
 
 const style = {
@@ -22,4 +24,8 @@ const style = {
   fontSize: "12px"
 }
 
-export default Authors;
+authors.propTypes = {
+  authors: PropTypes.array.isRequired
+}
+
+export default authors;

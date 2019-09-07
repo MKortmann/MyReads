@@ -4,10 +4,9 @@ import * as BooksAPI from './BooksAPI';
 import './App.css';
 import Header from "./components/header";
 import About from "./components/about";
-// The ReadState will be the states: Currently Reading, Want To Read and Read.
 import AllocationBooks from "./components/allocationbooks";
-// Search Page: complete new page to search books
 import SearchPage from "./components/searchpage";
+import searchImg from "./icons/search.svg"
 
 
 class BooksApp extends React.Component {
@@ -35,6 +34,7 @@ class BooksApp extends React.Component {
       })
   }
 
+  // reorganize the books in accord to the shelf
   reorganizeBooks = () => {
     let cr = [];
     let wr = [];
@@ -61,6 +61,7 @@ class BooksApp extends React.Component {
     this.setState({currentlyReading: cr, wantToRead: wr,  read: r});
   }
 
+  // move the book from one shelf to another
   move = (book, e) => {
     BooksAPI.update(book, e.target.value)
       .then( (response) => {
@@ -68,6 +69,7 @@ class BooksApp extends React.Component {
       })
   }
 
+  // search for a specific book
   search = (e) => {
     if(e.target.value !== "") {
       BooksAPI.search(e.target.value)
@@ -81,10 +83,7 @@ class BooksApp extends React.Component {
 
   }
 
-  closeSearchPage = () => {
-    this.setState({ showSearchPage: false })
-  }
-
+  // THE FIRST PAGE
   Home = () => {
     return(
       <div className="list-books">
@@ -103,24 +102,27 @@ class BooksApp extends React.Component {
     )
   }
 
+  // THE SEARCH PAGE
   Search = () => {
     return (
       <React.Fragment>
         <SearchPage search={this.search} closeSearchPage={this.closeSearchPage}  />
         {this.state.searchedBooks.length > 0 ? (
           <AllocationBooks
-            books={this.state.searchedBooks}
-            storedBooks={this.state.books}
-            title={"Searched Books"}
-            move={this.move}
+            books={this.state.searchedBooks} storedBooks={this.state.books}
+            title={"Searched Books"} move={this.move}
           />
         ):(
+          <div style={{textAlign: "center"}}>
           <h2>No Book Founded</h2>
+          <img src={searchImg}/>
+          </div>
         )}
       </React.Fragment>
     )
   }
 
+  // THE ABOUT PAGE
   About = () =>  {
     return(<About />)
   }
@@ -140,11 +142,5 @@ class BooksApp extends React.Component {
     )
   }
 }
-
-// {this.state.showSearchPage ? (
-//   this.Search()
-// ) : (
-//   this.Home()
-// )}
 
 export default BooksApp
