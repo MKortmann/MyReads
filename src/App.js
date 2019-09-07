@@ -1,8 +1,9 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import * as BooksAPI from './BooksAPI';
 import './App.css';
 import Header from "./components/header";
+import About from "./components/about";
 // The ReadState will be the states: Currently Reading, Want To Read and Read.
 import AllocationBooks from "./components/allocationbooks";
 // Search Page: complete new page to search books
@@ -22,8 +23,7 @@ class BooksApp extends React.Component {
     currentlyReading: [],
     wantToRead: [],
     read: [],
-    searchedBooks: [],
-    showSearchPage: false
+    searchedBooks: []
   }
 
   // As soon as the component mount let's get all the books
@@ -85,16 +85,44 @@ class BooksApp extends React.Component {
     this.setState({ showSearchPage: false })
   }
 
-   Home = () =>  {
-    return("")
+  Home = () => {
+    return(
+      <div className="list-books">
+        <AllocationBooks books={this.state.currentlyReading} storedBooks={this.state.books}
+          title={"Currently Reading"} move={this.move} />
+        <AllocationBooks
+          books={this.state.wantToRead} storedBooks={this.state.books}
+          title={"Want To Read"} move={this.move} />
+        <AllocationBooks
+          books={this.state.read} storedBooks={this.state.books}
+          title={"Read"} move={this.move} />
+        <div className="open-search">
+          <Link to="/search"><button><a>Search</a></button></Link>
+        </div>
+      </div>
+    )
   }
 
-  Search = () =>  {
-    return("")
+  Search = () => {
+    return (
+      <React.Fragment>
+        <SearchPage search={this.search} closeSearchPage={this.closeSearchPage}  />
+        {this.state.searchedBooks.length > 0 ? (
+          <AllocationBooks
+            books={this.state.searchedBooks}
+            storedBooks={this.state.books}
+            title={"Searched Books"}
+            move={this.move}
+          />
+        ):(
+          <h2>No Book Founded</h2>
+        )}
+      </React.Fragment>
+    )
   }
 
   About = () =>  {
-    return("")
+    return(<About />)
   }
 
   render() {
@@ -102,39 +130,21 @@ class BooksApp extends React.Component {
       <Router>
         <div className="App">
           <Header />
-          {this.state.showSearchPage ? (
-                <React.Fragment>
-                <SearchPage search={this.search} closeSearchPage={this.closeSearchPage}  />
-                {this.state.searchedBooks.length > 0 ? (
-                  <AllocationBooks
-                    books={this.state.searchedBooks}
-                    storedBooks={this.state.books}
-                    title={"Searched Books"}
-                    move={this.move}
-                  />
-                ):(
-                    <h2>No Book Founded</h2>
-                )}
-              </React.Fragment>
-          ) : (
-            <div className="list-books">
-              <AllocationBooks books={this.state.currentlyReading} storedBooks={this.state.books}
-                title={"Currently Reading"} move={this.move} />
-              <AllocationBooks
-                books={this.state.wantToRead} storedBooks={this.state.books}
-                title={"Want To Read"} move={this.move} />
-              <AllocationBooks
-                books={this.state.read} storedBooks={this.state.books}
-                title={"Read"} move={this.move} />
-              <div className="open-search">
-                <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-              </div>
-            </div>
-          )}
         </div>
+        <Switch>
+          <Route path="/" exact component={this.Home} />
+          <Route path="/search" component={this.Search} />
+          <Route path="/about" component={this.About} />
+        </Switch>
       </Router>
     )
   }
 }
+
+// {this.state.showSearchPage ? (
+//   this.Search()
+// ) : (
+//   this.Home()
+// )}
 
 export default BooksApp

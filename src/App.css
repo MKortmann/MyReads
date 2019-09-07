@@ -41,6 +41,7 @@ nav a {
   padding: 30px;
   font-size: 18px;
   color: white;
+  cursor: pointer;
 }
 
 nav a:hover {
