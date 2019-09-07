@@ -25,6 +25,28 @@ h2 {
   margin: 10px;
 }
 
+.logo {
+/* position: absolute; /*top, left: 0,0 refers to the body*/ */
+display: flex; /*flex->direct left-align*/
+padding: 0;
+margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  padding: 30px;
+  font-size: 18px;
+  color: white;
+}
+
+nav a:hover {
+  color: red;
+}
+
 /* main page */
 
 /* .list-books-title {

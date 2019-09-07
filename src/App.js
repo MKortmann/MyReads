@@ -1,11 +1,13 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
+import React from 'react';
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import * as BooksAPI from './BooksAPI';
+import './App.css';
 import Header from "./components/header";
 // The ReadState will be the states: Currently Reading, Want To Read and Read.
 import AllocationBooks from "./components/allocationbooks";
 // Search Page: complete new page to search books
 import SearchPage from "./components/searchpage";
+
 
 class BooksApp extends React.Component {
 
@@ -83,52 +85,54 @@ class BooksApp extends React.Component {
     this.setState({ showSearchPage: false })
   }
 
+   Home = () =>  {
+    return("")
+  }
+
+  Search = () =>  {
+    return("")
+  }
+
+  About = () =>  {
+    return("")
+  }
+
   render() {
     return (
-      <div className="app">
-        {this.state.showSearchPage ? (
-          <React.Fragment>
-            <Header />
-            <SearchPage search={this.search} closeSearchPage={this.closeSearchPage}  />
-            {this.state.searchedBooks.length > 0 ? (
+      <Router>
+        <div className="App">
+          <Header />
+          {this.state.showSearchPage ? (
+                <React.Fragment>
+                <SearchPage search={this.search} closeSearchPage={this.closeSearchPage}  />
+                {this.state.searchedBooks.length > 0 ? (
+                  <AllocationBooks
+                    books={this.state.searchedBooks}
+                    storedBooks={this.state.books}
+                    title={"Searched Books"}
+                    move={this.move}
+                  />
+                ):(
+                    <h2>No Book Founded</h2>
+                )}
+              </React.Fragment>
+          ) : (
+            <div className="list-books">
+              <AllocationBooks books={this.state.currentlyReading} storedBooks={this.state.books}
+                title={"Currently Reading"} move={this.move} />
               <AllocationBooks
-                books={this.state.searchedBooks}
-                storedBooks={this.state.books}
-                title={"Searched Books"}
-                move={this.move}
-              />
-            ):(
-                <h2>No Book Founded</h2>
-            )}
-
-          </React.Fragment>
-        ) : (
-          <div className="list-books">
-            <Header />
-            <AllocationBooks
-              books={this.state.currentlyReading}
-              storedBooks={this.state.books}
-              title={"Currently Reading"}
-              move={this.move}
-            />
-            <AllocationBooks
-              books={this.state.wantToRead}
-              storedBooks={this.state.books}
-              title={"Want To Read"}
-              move={this.move}
-            />
-            <AllocationBooks
-              books={this.state.read}
-              storedBooks={this.state.books}
-              title={"Read"}
-              move={this.move}
-            />
-            <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+                books={this.state.wantToRead} storedBooks={this.state.books}
+                title={"Want To Read"} move={this.move} />
+              <AllocationBooks
+                books={this.state.read} storedBooks={this.state.books}
+                title={"Read"} move={this.move} />
+              <div className="open-search">
+                <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </Router>
     )
   }
 }
