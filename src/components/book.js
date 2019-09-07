@@ -9,7 +9,6 @@ class Book extends Component {
   checkBookShelf(book) {
     let selectValue = "none";
     const storedBook = [...this.props.storedBooks];
-    const books = [...this.props.books];
 
     storedBook.forEach((stored) => {
         if(stored.id === book.id) {

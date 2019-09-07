@@ -29,9 +29,7 @@ class BooksApp extends React.Component {
     BooksAPI.getAll()
       .then( (response) =>  {
         this.setState({ books: response })
-        // console.log(this.state.books);
         this.reorganizeBooks()
-        console.log(response)
       })
   }
 

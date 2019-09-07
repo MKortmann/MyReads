@@ -3,6 +3,11 @@ import React, { Component } from "react";
 
 class SearchPage extends Component {
 
+  componentDidMount() {
+    // to set the focus to the input field
+    this.refs.inputField.focus();
+  }
+
   render() {
 
     return(
@@ -18,7 +23,7 @@ class SearchPage extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" onChange={this.props.search.bind(this)} placeholder="Search by title or author"/>
+            <input ref="inputField" type="text" onChange={this.props.search.bind(this)} placeholder="Search by title or author"/>
 
           </div>
         </div>
