@@ -21,7 +21,7 @@ function about (props) {
         <p>The Allowed Search Terms are:</p>
           {
           searchWords.map((word, index) => {
-            return <span style={{listStyle:"none"}}>{index}- {word} </span>
+            return <span key={index} style={{listStyle:"none"}}>{index}- {word} </span>
           })
           }
         </div>

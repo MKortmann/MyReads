@@ -12,9 +12,9 @@ function Header() {
       </header>
 
       <nav style={headerStyle}>
-        <Link to="/"><a>Home</a></Link>
-        <Link to="/search"><a>Search</a></Link>
-        <Link to="/about"><a>About</a></Link>
+        <Link to="/">Home</Link>
+        <Link to="/search">Search</Link>
+        <Link to="/about">About</Link>
       </nav>
     </React.Fragment>
 

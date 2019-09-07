@@ -97,7 +97,7 @@ class BooksApp extends React.Component {
           books={this.state.read} storedBooks={this.state.books}
           title={"Read"} move={this.move} />
         <div className="open-search">
-          <Link to="/search"><button><a>Search</a></button></Link>
+          <Link to="/search"><button>Search</button></Link>
         </div>
       </div>
     )
