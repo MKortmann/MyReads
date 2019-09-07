@@ -22,7 +22,7 @@ The app enclosed three shelves:
     * All the pages are linked with each other through the nav bar!
     * The users can easily move books from one shelf to another. It works also in
     the Search Page. The Browser URL corresponds with the actual displayed page.
-    * The About Page informs only about the limitation of the BooksAPI.
+    * The About Page informs about the limitation terms of the BooksAPI.
 
 ## How to start the App?
 
@@ -34,10 +34,9 @@ The app enclosed three shelves:
 ## Installation
 
 1. First you have to create a directory in the desire location
-2. git init
-3. git clone <address from git hub>
-4. install all project dependencies with `npm install`
-5. start the development server with `npm start`
+2. git clone `ADD HERE GITHUB PROJECT LINK`
+3. install all project dependencies with `npm install`
+4. start the development server with `npm start`
 
 ## Backend Server
 
