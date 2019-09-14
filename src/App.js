@@ -33,6 +33,10 @@ class BooksApp extends React.Component {
         this.setState({ books: response })
         this.reorganizeBooks()
       })
+      .catch(error => {
+        console.log(`Something wen wrong at [App.js]: ComponentDidMount -> BOOKS.API, error: ${error}`);
+        alert("Please, check your internet connection and reload the App!! Is the problem solved? If not, please, contact your webmaster!")
+      })
   }
 
   // reorganize the books in accord to the shelf
