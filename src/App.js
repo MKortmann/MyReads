@@ -27,6 +27,7 @@ class BooksApp extends React.Component {
 
   // As soon as the component mount let's get all the books
   componentDidMount() {
+    console.log("[App.js] - Component Did Mount")
     BooksAPI.getAll()
       .then( (response) =>  {
         this.setState({ books: response })

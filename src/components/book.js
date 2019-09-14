@@ -47,7 +47,8 @@ class Book extends Component {
 Book.propTypes = {
   books: PropTypes.array.isRequired,
   storedBooks: PropTypes.array.isRequired,
-  move: PropTypes.func.isRequired
+  move: PropTypes.func.isRequired,
+  authors: PropTypes.array
 }
 
 export default Book;

@@ -25,7 +25,7 @@ const style = {
 }
 
 authors.propTypes = {
-  authors: PropTypes.array.isRequired
+  authors: PropTypes.array
 }
 
 export default authors;
