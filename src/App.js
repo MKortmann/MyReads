@@ -6,7 +6,8 @@ import Header from "./components/header";
 import About from "./components/about";
 import AllocationBooks from "./components/allocationbooks";
 import SearchPage from "./components/searchpage";
-import searchImg from "./icons/search.svg"
+import searchImg from "./icons/search.svg";
+import Spinner from "./components/Spinner/Spinner"
 
 
 class BooksApp extends React.Component {
@@ -22,7 +23,8 @@ class BooksApp extends React.Component {
     currentlyReading: [],
     wantToRead: [],
     read: [],
-    searchedBooks: []
+    searchedBooks: [],
+    loading: true
   }
 
   // As soon as the component mount let's get all the books
@@ -30,10 +32,11 @@ class BooksApp extends React.Component {
     console.log("[App.js] - Component Did Mount")
     BooksAPI.getAll()
       .then( (response) =>  {
-        this.setState({ books: response })
-        this.reorganizeBooks()
+        this.setState({ books: response, loading: false })
+        this.reorganizeBooks();
       })
       .catch(error => {
+        this.setState({ loading: true})
         console.log(`Something wen wrong at [App.js]: ComponentDidMount -> BOOKS.API, error: ${error}`);
         alert("Please, check your internet connection and reload the App!! Is the problem solved? If not, please, contact your webmaster!")
       })
@@ -92,6 +95,8 @@ class BooksApp extends React.Component {
   Home = () => {
     return(
       <div className="list-books">
+        { !this.state.loading ? (
+        <React.Fragment>
         <AllocationBooks books={this.state.currentlyReading} storedBooks={this.state.books}
           title={"Currently Reading"} move={this.move} />
         <AllocationBooks
@@ -103,6 +108,8 @@ class BooksApp extends React.Component {
         <div className="open-search">
           <Link to="/search"><button>Search</button></Link>
         </div>
+        </React.Fragment>
+      ) : <Spinner />}
       </div>
     )
   }
