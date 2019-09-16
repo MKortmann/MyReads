@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../icons/mk.svg";
 
 // It is basically the header + navs!!!
@@ -14,9 +14,9 @@ function header() {
       <nav style={headerStyle}>
         <img src={logo} />
         <span style={{paddingTop: "10px" }}>
-        <Link to="/">Home</Link>
-        <Link to="/search">Search</Link>
-        <Link to="/about">About</Link>
+        <NavLink to="/" exact activeStyle = {activeStyle}>Home</NavLink>
+        <NavLink to="/search" activeStyle = {activeStyle}>Search</NavLink>
+        <NavLink to="/about" activeStyle = {activeStyle}>About</NavLink>
         </span>
       </nav>
     </React.Fragment>
@@ -28,6 +28,14 @@ const headerStyle = {
   color: "white",
   padding: 0,
   margin: 0,
+}
+
+const activeStyle = {
+  color: "#20c997",
+  textDecoration: "underline",
+  fontSize: "25px",
+  paddingTop: 0,
+  marginTop: 0
 }
 
 export default header;
