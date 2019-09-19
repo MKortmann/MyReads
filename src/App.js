@@ -127,7 +127,7 @@ class BooksApp extends React.Component {
         ):(
           <div style={{textAlign: "center"}}>
           <h2>No Book Founded</h2>
-          <img src={searchImg}/>
+          <img src={searchImg} alt="search-img"/>
           </div>
         )}
       </React.Fragment>
@@ -149,6 +149,7 @@ class BooksApp extends React.Component {
           <Route path="/" exact component={this.Home} />
           <Route path="/search" component={this.Search} />
           <Route path="/about" component={this.About} />
+          <Route render={() => <h1 style={{textAlign:"center"}}>Not found</h1>} />
         </Switch>
       </Router>
     )

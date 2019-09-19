@@ -12,7 +12,7 @@ function header() {
         </div>
       </header>
       <nav style={headerStyle}>
-        <img src={logo} />
+        <img src={logo} alt="logo-img"/>
         <span style={{paddingTop: "10px" }}>
         <NavLink to="/" exact activeStyle = {activeStyle}>Home</NavLink>
         <NavLink to="/search" activeStyle = {activeStyle}>Search</NavLink>
