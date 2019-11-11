@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/MKortmann/MyReads/precache-manifest.6375933b4d2cb96be8aeb2b728c4148b.js"
+  "/MyReads/precache-manifest.3ffaeaa416879c88e1f232ad87e3b3fd.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/MKortmann/MyReads/index.html", {
+workbox.routing.registerNavigationRoute("/MyReads/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

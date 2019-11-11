@@ -2,7 +2,7 @@
   "name": "myreads-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/MKortmann/MyReads",
+  "homepage": "https://mkortmann.github.io/MyReads/",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "prop-types": "^15.6.2",
